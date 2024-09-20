@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fetch-system-streams
+  annotations:
+    avp.kubernetes.io/path: "kv-v2/data/application/fetch-system/streams"
+spec:
+  replicas: 1
+  template:
+    spec:
+      imagePullSecrets:
+        - name: harbor-registry
+      containers:
+        - name: fetch-system-streams
+          image: "34.84.212.14:80/fetch-system/fetch-system-streams:79058dc34077ea5a30d04d237f315064af54773b"
+          imagePullPolicy: Always
+          env:
+            - name: KAFKA_BOOTSTRAP_HOST
+              value: <KAFKA_BOOTSTRAP_HOST>
+            - name: ETCD_HOST
+              value: <ETCD_HOST>
+            - name: OTEL_ENDPOINT
+              value: <OTEL_ENDPOINT>

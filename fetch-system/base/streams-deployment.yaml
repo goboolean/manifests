@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fetch-system-streams
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fetch-system-streams
+  template:
+    metadata:
+      labels:
+        app: fetch-system-streams
+    spec:
+      imagePullSecrets:
+        - name: harbor-registry
+      containers:
+        - name: fetch-system-streams
+          image: "registry.goboolean.io/fetch-system/fetch-system-streams:latest"
+          imagePullPolicy: Always
+          env:
+            - name: KAFKA_BOOTSTRAP_HOST
+              value: ""
+            - name: ETCD_HOST
+              value: ""
+            - name: OTEL_ENDPOINT
+              value: ""
