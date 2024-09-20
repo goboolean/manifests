@@ -5,15 +5,11 @@ metadata:
   annotations:
     avp.kubernetes.io/path: "kv-v2/data/application/fetch-system/streams"
 spec:
-  replicas: 1
   template:
     spec:
-      imagePullSecrets:
-        - name: harbor-registry
       containers:
         - name: fetch-system-streams
-          image: "34.84.212.14:80/fetch-system/fetch-system-streams:79058dc34077ea5a30d04d237f315064af54773b"
-          imagePullPolicy: Always
+          image: "34.64.83.183:80/fetch-system/streams:dev-79058dc"
           env:
             - name: KAFKA_BOOTSTRAP_HOST
               value: <KAFKA_BOOTSTRAP_HOST>
