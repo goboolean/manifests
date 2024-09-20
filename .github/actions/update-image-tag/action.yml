@@ -1,0 +1,72 @@
+name: "Update image tag"
+description: "Update image tag of kustomize manifest"
+inputs:
+  app-name:
+    description: "Application name"
+    required: true
+  image-tag:
+    description: "Image tag"
+    required: true
+  id:
+    description: "Github App id"
+    required: true
+  private-key:
+    description: "Github App private key"
+    required: true
+  profile:
+    description: "Profile"
+    required: true
+  pull-request-link:
+    description: "Pull request link"
+    required: false
+runs:
+  using: "composite"
+  steps:
+    - name: "Create github app token"
+      uses: actions/create-github-app-token@v1
+      id: app-token
+      with:
+        app-id: ${{ inputs.id }}
+        private-key: ${{ inputs.private-key }}
+        owner: ${{ github.repository_owner }}
+        repositories: manifests
+
+    - name: "Checkout main branch of manifests repository"
+      uses: actions/checkout@v2
+      with:
+        token: ${{ steps.app-token.outputs.token }}
+        repository: Goboolean/manifests
+        ref: main
+
+    - name: "Update image tag and commit"
+      shell: bash
+      env:
+        APPLICATION: ${{ inputs.app-name }}
+        IMAGE_TAG: ${{ inputs.image-tag }}
+        PROFILE: ${{ inputs.profile }}
+      run: |
+        ./.github/actions/update-image-tag/update_image_tag.sh -a $APPLICATION -i $IMAGE_TAG -p $PROFILE
+        git config user.name github-action
+        git config user.email github-action@github.com
+        git add .
+        git commit -m "Ci: update image tag of $APPLICATION to $IMAGE_TAG in $PROFILE"
+
+    - name: "Create Pull request and merge"
+      uses: peter-evans/create-pull-request@v7
+      id: pull-request
+      with:
+        token: ${{ steps.app-token.outputs.token }}
+        title: "Ci: update image tag of $APPLICATION to $IMAGE_TAG"
+        body: |
+          This PR updates the image tag of $APPLICATION to $IMAGE_TAG
+          Profile: $PROFILE
+          ${{ inputs.pull-request-link && 'Pull request link: ' + inputs.pull-request-link }}
+        branch-suffix: random
+        delete-branch: true
+
+    - name: "Merge pull request"
+      if: steps.pull-request.outputs.pull-request-operation == 'created'
+      shell: bash
+      run: gh pr merge ${{ steps.pull-request.outputs.pull-request-number }} --squash --auto --delete-branch --repo Goboolean/manifests
+      env:
+        GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
