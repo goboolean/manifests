@@ -9,7 +9,7 @@ spec:
     spec:
       containers:
         - name: fetch-system-streams
-          image: "34.64.83.183:80/fetch-system/streams:${GITHUB_SHA::56e212c"
+          image: "34.64.83.183:80/fetch-system/streams:56e212c"
           env:
             - name: KAFKA_BOOTSTRAP_HOST
               value: <KAFKA_BOOTSTRAP_HOST>
