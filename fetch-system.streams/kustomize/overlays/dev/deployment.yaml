@@ -9,7 +9,7 @@ spec:
     spec:
       containers:
         - name: fetch-system-streams
-          image: "34.64.83.183:80/fetch-system/streams:dev-79058dc"
+          image: "34.64.83.183:80/fetch-system/streams:79058dc"
           env:
             - name: KAFKA_BOOTSTRAP_HOST
               value: <KAFKA_BOOTSTRAP_HOST>
