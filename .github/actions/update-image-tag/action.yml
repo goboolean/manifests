@@ -60,7 +60,7 @@ runs:
         body: |
           This PR updates the image tag of $APPLICATION to $IMAGE_TAG
           Profile: $PROFILE
-          ${{ inputs.pull-request-link && 'Pull request link: ' + inputs.pull-request-link }}
+          ${{ inputs.pull-request-link && format('Pull request link: {0}', inputs.pull-request-link) }}
         branch-suffix: random
         delete-branch: true
 
