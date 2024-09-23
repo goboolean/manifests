@@ -40,26 +40,23 @@ runs:
 
     - name: "Update image tag and commit"
       shell: bash
-      env:
-        APPLICATION: ${{ inputs.app-name }}
-        IMAGE_TAG: ${{ inputs.image-tag }}
-        PROFILE: ${{ inputs.profile }}
       run: |
-        ./.github/actions/update-image-tag/update_image_tag.sh -a $APPLICATION -i $IMAGE_TAG -p $PROFILE
+        chmod +x .github/actions/update-image-tag/update_image_tag.sh
+        ./.github/actions/update-image-tag/update_image_tag.sh -a ${{ inputs.app-name }} -i ${{ inputs.image-tag }} -p ${{ inputs.profile }}
         git config user.name github-action
         git config user.email github-action@github.com
         git add .
-        git commit -m "Ci: update image tag of $APPLICATION to $IMAGE_TAG in $PROFILE"
+        git commit -m "Ci: update image tag of ${{ inputs.app-name }} to ${{ inputs.image-tag }} in ${{ inputs.profile }}"  
 
     - name: "Create Pull request and merge"
       uses: peter-evans/create-pull-request@v7
       id: pull-request
       with:
         token: ${{ steps.app-token.outputs.token }}
-        title: "Ci: update image tag of $APPLICATION to $IMAGE_TAG"
+        title: "Ci: update image tag of ${{ inputs.app-name }} to ${{ inputs.image-tag }}"
         body: |
-          This PR updates the image tag of $APPLICATION to $IMAGE_TAG
-          Profile: $PROFILE
+          This PR updates the image tag of ${{ inputs.app-name }} to ${{ inputs.image-tag }}
+          Profile: ${{ inputs.profile }}
           ${{ inputs.pull-request-link && format('Pull request link: {0}', inputs.pull-request-link) }}
         branch-suffix: random
         delete-branch: true
