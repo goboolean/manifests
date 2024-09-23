@@ -20,17 +20,16 @@ if [ -z "$APPLICATION" ] || [ -z "$IMAGE_TAG" ] || [ -z "$PROFILE" ]; then
     exit 1
 fi
 
-echo "Updating image tag for $APPLICATION to $IMAGE_TAG"
+echo "Updating image tag for $APPLICATION to $IMAGE_TAG, profile: $PROFILE"
 
 # Parsing APPLICATION
 IFS='.' read -r app_name sub_name <<< "$APPLICATION"
 
-# File path determination
+# Container name determination
+file_path="$APPLICATION/kustomize/overlays/$PROFILE/deployment.yaml"
 if [ -z "$sub_name" ]; then
-    file_path="${app_name}/overlays/${PROFILE}/patch.yaml"
     container_name="${app_name}"
 else
-    file_path="${app_name}/overlays/${PROFILE}/${sub_name}-patch.yaml"
     container_name="${app_name}-${sub_name}"
 fi
 
@@ -54,7 +53,7 @@ if [ $? -ne 0 ]; then
 fi
 
 # YAML file processing
-yq eval ".spec.template.spec.containers[] |= select(.name == \"$container_name\").image |= sub(\":[^:]*$\"; \":$PROFILE-$IMAGE_TAG\")" "$file_path" > "$temp_file"
+yq eval ".spec.template.spec.containers[] |= select(.name == \"$container_name\").image |= sub(\":[^:]*$\"; \":$IMAGE_TAG\")" "$file_path" > "$temp_file"
 
 # Backup the original file
 cp "$file_path" "${file_path}.bak"
@@ -63,7 +62,7 @@ cp "$file_path" "${file_path}.bak"
 mv "$temp_file" "$file_path"
 
 if [ $? -eq 0 ]; then
-    echo "Successfully updated $file_path with new image tag: $PROFILE-$IMAGE_TAG for container: $container_name"
+    echo "Successfully updated $file_path with new image tag: $IMAGE_TAG for container: $container_name"
 else
     echo "Error: Failed to update $file_path"
     mv "${file_path}.bak" "$file_path"  # Restore from backup on failure
