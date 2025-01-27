@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kis-stock
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kis-stock
+  template:
+    metadata:
+      labels:
+        app: kis-stock
+    spec:
+      imagePullSecrets:
+        - name: harbor-registry
+      containers:
+        - name: kis-stock
+          image: "registry.goboolean.io/fetch-system/worker:prod-latest"
+          imagePullPolicy: Always
+          env:
+            - name: KIS_APP_KEY
+              value: ""
+            - name: KIS_SECRET_KEY
+              value: ""
+            - name: PLATFORM
+              value: "KIS"
+            - name: MARKET
+              value: "STOCK"

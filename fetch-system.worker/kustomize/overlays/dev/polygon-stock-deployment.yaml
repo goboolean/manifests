@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: polygon-stock
+  annotations:
+    avp.kubernetes.io/path: "kv-v2/data/application/fetch-system/worker"
+spec:
+  template:
+    spec:
+      containers:
+        - name: polygon-stock
+          image: "34.64.83.183:80/fetch-system/worker:2d95305"
+          env:
+            - name: POLYGON_SECRET_KEY
+              value: <POLYGON_SECRET_KEY>
+            - name: PLATFORM
+              value: <PLATFORM>
+            - name: MARKET
+              value: <MARKET>
