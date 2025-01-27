@@ -1,0 +1,6 @@
+resources:
+- ../../base
+
+patches:
+  - path: polygon-stock-deployment.yaml
+  - path: kis-stock-deployment.yaml

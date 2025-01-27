@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kis-stock
+  annotations:
+    avp.kubernetes.io/path: "kv-v2/data/application/fetch-system/worker"
+spec:
+  template:
+    spec:
+      containers:
+        - name: kis-stock
+          image: "34.64.83.183:80/fetch-system/worker:2d95305"
+          env:
+            - name: KIS_APP_KEY
+              value: <KIS_APP_KEY>
+            - name: KIS_SECRET_KEY
+              value: <KIS_SECRET_KEY>
+            - name: PLATFORM
+              value: <PLATFORM>
+            - name: MARKET
+              value: <MARKET>

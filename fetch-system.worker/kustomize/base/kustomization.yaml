@@ -1,0 +1,3 @@
+resources:
+  - polygon-stock-deployment.yaml
+  - kis-stock-deployment.yaml
