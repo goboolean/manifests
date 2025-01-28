@@ -9,7 +9,7 @@ spec:
     spec:
       containers:
         - name: fetch-system-streams
-          image: "34.64.83.183:80/fetch-system/streams:2d95305"
+          image: "registry.goboolean.io/fetch-system/streams:2d95305"
           env:
             - name: KAFKA_BOOTSTRAP_HOST
               value: <KAFKA_BOOTSTRAP_HOST>
