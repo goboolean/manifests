@@ -7,11 +7,8 @@ inputs:
   image-tag:
     description: "Image tag"
     required: true
-  id:
-    description: "Github App id"
-    required: true
-  private-key:
-    description: "Github App private key"
+  github-token:
+    description: "Github token with repo access"
     required: true
   profile:
     description: "Profile"
@@ -22,20 +19,11 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: "Create github app token"
-      uses: actions/create-github-app-token@v1
-      id: app-token
-      with:
-        app-id: ${{ inputs.id }}
-        private-key: ${{ inputs.private-key }}
-        owner: ${{ github.repository_owner }}
-        repositories: manifests
-
     - name: "Checkout main branch of manifests repository"
       uses: actions/checkout@v2
       with:
-        token: ${{ steps.app-token.outputs.token }}
-        repository: Goboolean/manifests
+        token: ${{ inputs.github-token }}
+        repository: goboolean/manifests
         ref: main
 
     - name: "Update image tag and commit"
@@ -43,8 +31,8 @@ runs:
       run: |
         chmod +x .github/actions/update-image-tag/update_image_tag.sh
         ./.github/actions/update-image-tag/update_image_tag.sh -a ${{ inputs.app-name }} -i ${{ inputs.image-tag }} -p ${{ inputs.profile }}
-        git config user.name github-action
-        git config user.email github-action@github.com
+        git config user.name goboolean-io
+        git config user.email goboolean-io@goboolean.io
         git add .
         git commit -m "Ci: update image tag of ${{ inputs.app-name }} to ${{ inputs.image-tag }} in ${{ inputs.profile }}"  
 
@@ -52,7 +40,7 @@ runs:
       uses: peter-evans/create-pull-request@v7
       id: pull-request
       with:
-        token: ${{ steps.app-token.outputs.token }}
+        token: ${{ inputs.github-token }}
         title: "Ci: update image tag of ${{ inputs.app-name }} to ${{ inputs.image-tag }}"
         body: |
           This PR updates the image tag of ${{ inputs.app-name }} to ${{ inputs.image-tag }}
@@ -64,6 +52,6 @@ runs:
     - name: "Merge pull request"
       if: steps.pull-request.outputs.pull-request-operation == 'created'
       shell: bash
-      run: gh pr merge ${{ steps.pull-request.outputs.pull-request-number }} --squash --auto --delete-branch --repo Goboolean/manifests
+      run: gh pr merge ${{ steps.pull-request.outputs.pull-request-number }} --squash --auto --delete-branch --repo goboolean/manifests
       env:
-        GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
+        GITHUB_TOKEN: ${{ inputs.github-token }}
