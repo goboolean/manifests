@@ -3,13 +3,13 @@ kind: Deployment
 metadata:
   name: kis-stock
   annotations:
-    avp.kubernetes.io/path: "kv-v2/data/application/fetch-system/worker"
+    avp.kubernetes.io/path: "kv-v2/data/application/fetch-system/worker/kis-stock"
 spec:
   template:
     spec:
       containers:
         - name: kis-stock
-          image: "registry.goboolean.io/fetch-system/worker:030a6c9"
+          image: "registry.goboolean.io/fetch-system/worker:2d95305"
           env:
             - name: KIS_APP_KEY
               value: <KIS_APP_KEY>
