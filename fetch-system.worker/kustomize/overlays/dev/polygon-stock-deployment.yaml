@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: polygon-stock
   annotations:
-    avp.kubernetes.io/path: "kv-v2/data/application/fetch-system/worker"
+    avp.kubernetes.io/path: "kv-v2/data/application/fetch-system/worker/polygon-stock"
 spec:
   template:
     spec:
