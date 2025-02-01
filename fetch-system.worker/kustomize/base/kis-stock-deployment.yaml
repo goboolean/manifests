@@ -12,8 +12,6 @@ spec:
       labels:
         app: kis-stock
     spec:
-      imagePullSecrets:
-        - name: harbor-registry
       containers:
         - name: kis-stock
           image: "registry.goboolean.io/fetch-system/worker:prod-latest"
