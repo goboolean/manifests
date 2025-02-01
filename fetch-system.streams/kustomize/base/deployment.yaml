@@ -12,8 +12,6 @@ spec:
       labels:
         app: fetch-system-streams
     spec:
-      imagePullSecrets:
-        - name: harbor-registry
       containers:
         - name: fetch-system-streams
           image: "registry.goboolean.io/fetch-system/streams:prod-latest"

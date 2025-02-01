@@ -12,8 +12,6 @@ spec:
       labels:
         app: polygon-stock
     spec:
-      imagePullSecrets:
-        - name: harbor-registry
       containers:
         - name: polygon-stock
           image: "registry.goboolean.io/fetch-system/worker:prod-latest"
