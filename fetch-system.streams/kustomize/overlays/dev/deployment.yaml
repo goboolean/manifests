@@ -11,9 +11,9 @@ spec:
         - name: fetch-system-streams
           image: "registry.goboolean.io/fetch-system/streams:e755d8b"
           env:
-            - name: KAFKA_BOOTSTRAP_HOST
-              value: <KAFKA_BOOTSTRAP_HOST>
-            - name: ETCD_HOST
-              value: <ETCD_HOST>
+            - name: KAFKA_BOOTSTRAP_SERVERS
+              value: <KAFKA_BOOTSTRAP_SERVERS>
+            - name: ETCD_ENDPOINTS
+              value: <ETCD_ENDPOINTS>
             - name: OTEL_ENDPOINT
               value: <OTEL_ENDPOINT>
