@@ -17,9 +17,9 @@ spec:
           image: "registry.goboolean.io/fetch-system/streams:prod-latest"
           imagePullPolicy: Always
           env:
-            - name: KAFKA_BOOTSTRAP_HOST
+            - name: KAFKA_BOOTSTRAP_SERVERS
               value: ""
-            - name: ETCD_HOST
+            - name: ETCD_ENDPOINTS
               value: ""
             - name: OTEL_ENDPOINT
               value: ""
