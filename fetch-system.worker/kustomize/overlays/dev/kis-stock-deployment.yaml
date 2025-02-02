@@ -26,3 +26,7 @@ spec:
               value: <KAFKA_BOOTSTRAP_HOST>
             - name: OTEL_ENDPOINT
               value: <OTEL_ENDPOINT>
+            - name: WORKER_ID
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
