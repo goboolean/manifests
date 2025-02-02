@@ -1,36 +1,28 @@
 #!/bin/bash
 
-# usage: ./update_image_tag.sh -a APPLICATION -i IMAGE_TAG [-p PROFILE]
+# usage: ./update_image_tag.sh -a APPLICATION -i IMAGE_NAME -t IMAGE_TAG [-p PROFILE]
 # -a: application name
-# -i: image tag
+# -i: image
+# -t: image tag
 # -p: profile
 
-while getopts a:i:p: flag
+while getopts a:i:t:p: flag
 do
     case "${flag}" in
         a) APPLICATION=${OPTARG};;
-        i) IMAGE_TAG=${OPTARG};;
+        i) IMAGE_NAME=${OPTARG};;
+        t) IMAGE_TAG=${OPTARG};;
         p) PROFILE=${OPTARG};;
     esac
 done
 
 # Arguments check
-if [ -z "$APPLICATION" ] || [ -z "$IMAGE_TAG" ] || [ -z "$PROFILE" ]; then
-    echo "Usage: $0 -a APPLICATION -i IMAGE_TAG -p PROFILE"
+if [ -z "$APPLICATION" ] || [ -z "$IMAGE_NAME" ] || [ -z "$IMAGE_TAG" ] || [ -z "$PROFILE" ]; then
+    echo "Usage: $0 -a APPLICATION -i IMAGE_NAME -t IMAGE_TAG [-p PROFILE]"
     exit 1
 fi
 
 echo "Updating image tag for $APPLICATION to $IMAGE_TAG, profile: $PROFILE"
-
-# Parsing APPLICATION
-IFS='.' read -r app_name sub_name <<< "$APPLICATION"
-
-# Container name determination
-if [ -z "$sub_name" ]; then
-    image="${app_name}"
-else
-    image="${app_name}/${sub_name}"
-fi
 
 # Define directory path
 dir_path="$APPLICATION/kustomize/overlays/$PROFILE"
@@ -53,12 +45,22 @@ while IFS= read -r file; do
     yaml_files+=("$file")
 done < <(find "$dir_path" -type f -name "*deployment.yaml")
 
+# Find all job.yaml files
+while IFS= read -r file; do
+    yaml_files+=("$file")
+done < <(find "$dir_path" -type f -name "*job.yaml")
+
+# If you want to add more file types, add them here
+# while IFS= read -r file; do
+#     yaml_files+=("$file")
+# done < <(find "$dir_path" -type f -name "*file_type.yaml")
+
 if [ ${#yaml_files[@]} -eq 0 ]; then
     echo "Error: No deployment.yaml files found in $dir_path"
     exit 1
 fi
 
-# Process each deployment.yaml file
+# Process each deployment.yaml, job.yaml file
 for file_path in "${yaml_files[@]}"; do
     echo "Processing $file_path..."
     
