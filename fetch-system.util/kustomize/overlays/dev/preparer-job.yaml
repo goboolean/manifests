@@ -10,24 +10,24 @@ spec:
       name: "fetch-system-preparer"
     spec:
       containers:
-      - name: preparer
-        image: "registry.goboolean.io/fetch-system/util/preparer:prod-latest"
-        env:
-        - name: POSTGRES_HOST
-          value: <POSTGRES_HOST>
-        - name: POSTGRES_PORT
-          value: <POSTGRES_PORT>
-        - name: POSTGRES_USER
-          value: <POSTGRES_USER>
-        - name: POSTGRES_PASSWORD
-          value: <POSTGRES_PASSWORD>
-        - name: POSTGRES_DATABASE
-          value: <POSTGRES_DATABASE>
-        - name: ETCD_HOST
-          value: <ETCD_HOST>
-        - name: KAFKA_CONNECT_HOST
-          value: <KAFKA_CONNECT_HOST>
-        - name: KAFKA_BOOTSTRAP_HOST
-          value: <KAFKA_BOOTSTRAP_HOST>
-        - name: POLYGON_SECRET_KEY
-          value: <POLYGON_SECRET_KEY>
+        - name: preparer
+          image: "registry.goboolean.io/fetch-system/util/preparer:prod-latest"
+          env:
+            - name: POSTGRES_HOST
+              value: <POSTGRES_HOST>
+            - name: POSTGRES_PORT
+              value: <POSTGRES_PORT>
+            - name: POSTGRES_USER
+              value: <POSTGRES_USER>
+            - name: POSTGRES_PASSWORD
+              value: <POSTGRES_PASSWORD>
+            - name: POSTGRES_DATABASE
+              value: <POSTGRES_DATABASE>
+            - name: ETCD_HOST
+              value: <ETCD_HOST>
+            - name: KAFKA_CONNECT_HOST
+              value: <KAFKA_CONNECT_HOST>
+            - name: KAFKA_BOOTSTRAP_HOST
+              value: <KAFKA_BOOTSTRAP_HOST>
+            - name: POLYGON_SECRET_KEY
+              value: <POLYGON_SECRET_KEY>
