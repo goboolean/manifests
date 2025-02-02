@@ -1,0 +1,35 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: "fetch-system-preparer"
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+spec:
+  template:
+    metadata:
+      name: "fetch-system-preparer"
+    spec:
+      containers:
+      - name: preparer
+        image: "registry.goboolean.io/fetch-system/util/preparer:prod-latest"
+        env:
+        - name: POSTGRES_HOST
+          value: ""
+        - name: POSTGRES_PORT
+          value: ""
+        - name: POSTGRES_USER
+          value: ""
+        - name: POSTGRES_PASSWORD
+          value: ""
+        - name: POSTGRES_DATABASE
+          value: ""
+        - name: ETCD_HOST
+          value: ""
+        - name: KAFKA_CONNECT_HOST
+          value: ""
+        - name: KAFKA_BOOTSTRAP_HOST
+          value: ""
+        - name: POLYGON_SECRET_KEY
+          value: ""
+      restartPolicy: Never
+  backoffLimit: 3

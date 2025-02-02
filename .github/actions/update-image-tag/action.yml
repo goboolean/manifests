@@ -4,6 +4,9 @@ inputs:
   app-name:
     description: "Application name"
     required: true
+  image-name:
+    description: "Image name"
+    required: true
   image-tag:
     description: "Image tag"
     required: true
@@ -30,21 +33,20 @@ runs:
       shell: bash
       run: |
         chmod +x .github/actions/update-image-tag/update_image_tag.sh
-        ./.github/actions/update-image-tag/update_image_tag.sh -a ${{ inputs.app-name }} -i ${{ inputs.image-tag }} -p ${{ inputs.profile }}
+        ./.github/actions/update-image-tag/update_image_tag.sh -a ${{ inputs.app-name }} -i ${{ inputs.image-name }} -t ${{ inputs.image-tag }} -p ${{ inputs.profile }}
         git config user.name goboolean-io
         git config user.email goboolean.io@gmail.com
         git add .
-        git commit -m "Ci: update image tag of ${{ inputs.app-name }} to ${{ inputs.image-tag }} in ${{ inputs.profile }}"  
+        git commit -m "CI: update ${{ inputs.app-name }} image (${{ inputs.image-name }}) to tag ${{ inputs.image-tag }} in profile ${{ inputs.profile }}"  
 
     - name: "Create Pull request and merge"
       uses: peter-evans/create-pull-request@v7
       id: pull-request
       with:
         token: ${{ inputs.github-token }}
-        title: "Ci: update image tag of ${{ inputs.app-name }} to ${{ inputs.image-tag }}"
+        title: "CI: update ${{ inputs.app-name }} image (${{ inputs.image-name }}) to tag ${{ inputs.image-tag }} in profile ${{ inputs.profile }}"
         body: |
-          This PR updates the image tag of ${{ inputs.app-name }} to ${{ inputs.image-tag }}
-          Profile: ${{ inputs.profile }}
+          This PR updates ${{ inputs.app-name }} image (${{ inputs.image-name }}) to tag ${{ inputs.image-tag }} in profile ${{ inputs.profile }}
           ${{ inputs.pull-request-link && format('Pull request link: {0}', inputs.pull-request-link) }}
         branch-suffix: random
         delete-branch: true

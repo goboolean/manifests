@@ -1,0 +1,30 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: "fetch-system-db-initer"
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
+spec:
+  template:
+    metadata:
+      name: "fetch-system-db-initer"
+    spec:
+      containers:
+      - name: db-initer
+        image: "registry.goboolean.io/fetch-system/util/db-initer:prod-latest"
+        imagePullPolicy: Always
+        env:
+        - name: POSTGRES_HOST
+          value: ""
+        - name: POSTGRES_PORT
+          value: ""
+        - name: POSTGRES_USER
+          value: ""
+        - name: POSTGRES_PASSWORD
+          value: ""
+        - name: POSTGRES_DATABASE
+          value: ""
+        - name: POLYGON_SECRET_KEY
+          value: ""
+      restartPolicy: Never
+  backoffLimit: 3
