@@ -1,0 +1,27 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: "fetch-system-db-initer"
+  annotations:
+    avp.kubernetes.io/path: "kv-v2/data/application/fetch-system/util/db-initer"
+spec:
+  template:
+    metadata:
+      name: "fetch-system-db-initer"
+    spec:
+      containers:
+      - name: db-initer
+        image: "registry.goboolean.io/fetch-system/util/db-initer:prod-latest"
+        env:
+        - name: POSTGRES_HOST
+          value: <POSTGRES_HOST>
+        - name: POSTGRES_PORT
+          value: <POSTGRES_PORT>
+        - name: POSTGRES_USER
+          value: <POSTGRES_USER>
+        - name: POSTGRES_PASSWORD
+          value: <POSTGRES_PASSWORD>
+        - name: POSTGRES_DATABASE
+          value: <POSTGRES_DATABASE>
+        - name: POLYGON_SECRET_KEY
+          value: <POLYGON_SECRET_KEY>
