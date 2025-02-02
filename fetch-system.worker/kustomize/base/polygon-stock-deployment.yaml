@@ -29,3 +29,7 @@ spec:
               value: "kafka.kafka.svc.cluster.local:9092"
             - name: OTEL_ENDPOINT
               value: "otel-collector.fetch-system.svc.cluster.local:4317"
+            - name: WORKER_ID
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
