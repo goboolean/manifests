@@ -22,7 +22,7 @@ if [ -z "$APPLICATION" ] || [ -z "$IMAGE_NAME" ] || [ -z "$IMAGE_TAG" ] || [ -z 
     exit 1
 fi
 
-echo "Updating image tag for $APPLICATION to $IMAGE_TAG, profile: $PROFILE"
+echo "Updating image $IMAGE_NAME tag to $IMAGE_TAG for $APPLICATION, profile: $PROFILE"
 
 # Define directory path
 dir_path="$APPLICATION/kustomize/overlays/$PROFILE"
@@ -72,7 +72,7 @@ for file_path in "${yaml_files[@]}"; do
     fi
     
     # YAML file processing
-    yq eval ".spec.template.spec.containers[] |= select(.image | test(\"^$image:[^:]+\")).image |= sub(\":.*$\"; \":$IMAGE_TAG\")" "$file_path" > "$temp_file"
+    yq eval ".spec.template.spec.containers[] |= select(.image | test(\"^$IMAGE_NAME:[^:]+\")).image |= sub(\":.*$\"; \":$IMAGE_TAG\")" "$file_path" > "$temp_file"
 
     # Backup the original file
     cp "$file_path" "${file_path}.bak"
@@ -81,7 +81,7 @@ for file_path in "${yaml_files[@]}"; do
     mv "$temp_file" "$file_path"
 
     if [ $? -eq 0 ]; then
-        echo "Successfully updated $file_path with new image tag: $IMAGE_TAG for image: $image"
+        echo "Successfully updated $file_path with new image tag: $IMAGE_TAG for image: $IMAGE_NAME"
     else
         echo "Error: Failed to update $file_path"
         mv "${file_path}.bak" "$file_path"  # Restore from backup on failure
@@ -93,6 +93,6 @@ for file_path in "${yaml_files[@]}"; do
 
 done
 
-echo "Successfully updated all deployment.yaml files."
+echo "Successfully updated all files."
 
 exit 0
