@@ -72,7 +72,7 @@ for file_path in "${yaml_files[@]}"; do
     fi
     
     # YAML file processing
-    yq eval ".spec.template.spec.containers[] |= select(.image | test(\"$image\")).image |= sub(\":[^:]*$\"; \":$IMAGE_TAG\")" "$file_path" > "$temp_file"
+    yq eval ".spec.template.spec.containers[] |= select(.image | test(\"^$image:[^:]+\")).image |= sub(\":.*$\"; \":$IMAGE_TAG\")" "$file_path" > "$temp_file"
 
     # Backup the original file
     cp "$file_path" "${file_path}.bak"
