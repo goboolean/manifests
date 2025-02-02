@@ -5,6 +5,7 @@ metadata:
   annotations:
     avp.kubernetes.io/path: "kv-v2/data/application/fetch-system/worker/kis-stock"
 spec:
+  replicas: 0
   template:
     spec:
       containers:
@@ -19,3 +20,9 @@ spec:
               value: <PLATFORM>
             - name: MARKET
               value: <MARKET>
+            - name: ETCD_HOST
+              value: <ETCD_HOST>
+            - name: KAFKA_BOOTSTRAP_HOST
+              value: <KAFKA_BOOTSTRAP_HOST>
+            - name: OTEL_ENDPOINT
+              value: <OTEL_ENDPOINT>
