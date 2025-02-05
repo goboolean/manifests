@@ -25,11 +25,16 @@ spec:
           value: ""
         - name: ETCD_HOST
           value: ""
-        - name: KAFKA_CONNECT_HOST
-          value: ""
         - name: KAFKA_BOOTSTRAP_HOST
           value: ""
         - name: POLYGON_SECRET_KEY
           value: ""
+        - name: INFLUXDB_URL
+          value: ""
+        - name: INFLUXDB_TOKEN
+          value: ""
+        - name: INFLUXDB_ORGANIZATION
+          value: ""
+          
       restartPolicy: Never
   backoffLimit: 3

@@ -31,3 +31,9 @@ spec:
               value: <KAFKA_BOOTSTRAP_HOST>
             - name: POLYGON_SECRET_KEY
               value: <POLYGON_SECRET_KEY>
+            - name: INFLUXDB_URL
+              value: <INFLUXDB_URL>
+            - name: INFLUXDB_TOKEN
+              value: <INFLUXDB_TOKEN>
+            - name: INFLUXDB_ORGANIZATION
+              value: <INFLUXDB_ORGANIZATION>
