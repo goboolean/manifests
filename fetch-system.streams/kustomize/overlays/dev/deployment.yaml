@@ -9,7 +9,7 @@ spec:
     spec:
       containers:
         - name: fetch-system-streams
-          image: "registry.goboolean.io/fetch-system/streams:db64d2a"
+          image: "registry.goboolean.io/fetch-system/streams:345f45c"
           resources:
             requests:
               cpu: 2000m
