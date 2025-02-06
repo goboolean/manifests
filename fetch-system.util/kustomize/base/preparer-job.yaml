@@ -33,7 +33,7 @@ spec:
           value: ""
         - name: INFLUXDB_TOKEN
           value: ""
-        - name: INFLUXDB_ORGANIZATION
+        - name: INFLUXDB_ORG_ID
           value: ""
           
       restartPolicy: Never

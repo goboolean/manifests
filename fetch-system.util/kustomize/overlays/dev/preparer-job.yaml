@@ -35,5 +35,5 @@ spec:
               value: <INFLUXDB_URL>
             - name: INFLUXDB_TOKEN
               value: <INFLUXDB_TOKEN>
-            - name: INFLUXDB_ORGANIZATION
-              value: <INFLUXDB_ORGANIZATION>
+            - name: INFLUXDB_ORG_ID
+              value: <INFLUXDB_ORG_ID>
