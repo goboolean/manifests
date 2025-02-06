@@ -10,7 +10,7 @@ spec:
     spec:
       containers:
         - name: polygon-stock
-          image: "registry.goboolean.io/fetch-system/worker:d4edd4c"
+          image: "registry.goboolean.io/fetch-system/worker:f397bf7"
           env:
             - name: POLYGON_SECRET_KEY
               value: <POLYGON_SECRET_KEY>
