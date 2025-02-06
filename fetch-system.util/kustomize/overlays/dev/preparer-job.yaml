@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
         - name: preparer
-          image: "registry.goboolean.io/fetch-system/util/preparer:edbf3b9"
+          image: "registry.goboolean.io/fetch-system/util/preparer:635c617"
           env:
             - name: POSTGRES_HOST
               value: <POSTGRES_HOST>
