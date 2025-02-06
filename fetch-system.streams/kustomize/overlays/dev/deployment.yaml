@@ -12,10 +12,10 @@ spec:
           image: "registry.goboolean.io/fetch-system/streams:f75d930"
           resources:
             requests:
-              cpu: 2000m
+              cpu: 2G
               memory: 2Gi
             limits:
-              cpu: 4000m
+              cpu: 4G
               memory: 4Gi
           env:
             - name: KAFKA_BOOTSTRAP_SERVERS
