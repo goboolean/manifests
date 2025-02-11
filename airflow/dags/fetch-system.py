@@ -1,5 +1,5 @@
 from airflow import DAG
-from airflow.providers.cncf.kubernetes.operators.kubernetes_pod import KubernetesPodOperator
+from airflow.providers.cncf.kubernetes.operators.pod import KubernetesPodOperator
 from datetime import datetime
 
 default_args = {
@@ -8,7 +8,7 @@ default_args = {
 
 with DAG('test-dag', default_args=default_args, schedule_interval=None) as dag:
     task = KubernetesPodOperator(
-        task_id='run-test-dag',
+        task_id='test-dag',
         name='test',
         namespace='fetch-system',
         image='alpine:latest',
