@@ -1,0 +1,7 @@
+resources:
+- ../../base
+- service-account.yaml
+- init-script.yaml
+
+patches:
+  - path: deployment.yaml

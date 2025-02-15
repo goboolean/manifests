@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fetch-system-polygon-proxy
+  namespace: fetch-system
+spec:
+  replicas: 1
+    spec:
+      serviceAccountName: load-tester-sa
+      containers:
+        - name: fetch-system-polygon-proxy
+          image: google/cloud-sdk:alpine
+          command: ["/bin/sh", "-c"]
+          args:
+            - |
+              chmod +x /scripts/init.sh && /scripts/init.sh
+          volumeMounts:
+            - name: init-script-volume
+              mountPath: /scripts
+          ports:
+            - containerPort: 8080
+      volumes:
+        - name: init-script-volume
+          configMap:
+            name: fetch-system-polygon-proxy-init-script
+            defaultMode: 0744

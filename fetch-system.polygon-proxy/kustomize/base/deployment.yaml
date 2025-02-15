@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fetch-system-polygon-proxy
+  namespace: fetch-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fetch-system-polygon-proxy
+  template:
+    metadata:
+      labels:
+        app: fetch-system-polygon-proxy
+    spec:
+      containers:
+        - name: fetch-system-polygon-proxy
+          image: ""
+          ports:
+            - containerPort: 8080
