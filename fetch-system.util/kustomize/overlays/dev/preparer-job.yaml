@@ -1,13 +1,13 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: "fetch-system-preparer"
+  name: "preparer"
   annotations:
     avp.kubernetes.io/path: "kv-v2/data/application/fetch-system/util/preparer"
 spec:
   template:
     metadata:
-      name: "fetch-system-preparer"
+      name: "preparer"
     spec:
       containers:
         - name: preparer
