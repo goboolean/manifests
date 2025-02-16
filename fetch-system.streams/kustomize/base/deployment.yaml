@@ -1,19 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: fetch-system-streams
+  name: streams
+  namespace: fetch-system
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: fetch-system-streams
+      app: streams
   template:
     metadata:
       labels:
-        app: fetch-system-streams
+        app: streams
     spec:
       containers:
-        - name: fetch-system-streams
+        - name: streams
           image: "registry.goboolean.io/fetch-system/streams:prod-latest"
           imagePullPolicy: Always
           env:

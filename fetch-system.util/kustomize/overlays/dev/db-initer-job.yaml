@@ -1,13 +1,13 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: "fetch-system-db-initer"
+  name: "db-initer"
   annotations:
     avp.kubernetes.io/path: "kv-v2/data/application/fetch-system/util/db-initer"
 spec:
   template:
     metadata:
-      name: "fetch-system-db-initer"
+      name: "db-initer"
     spec:
       containers:
         - name: db-initer

@@ -1,14 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: fetch-system-streams
+  name: streams
+  namespace: fetch-system
   annotations:
     avp.kubernetes.io/path: "kv-v2/data/application/fetch-system/streams"
 spec:
   template:
+    metadata:
+      annotations:
+        sidecar.istio.io/inject: "true"
     spec:
       containers:
-        - name: fetch-system-streams
+        - name: streams
           image: "registry.goboolean.io/fetch-system/streams:345f45c"
           resources:
             requests:

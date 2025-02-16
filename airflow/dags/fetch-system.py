@@ -10,7 +10,7 @@ with DAG('test-dag', default_args=default_args, schedule_interval=None) as dag:
     task = KubernetesPodOperator(
         task_id='test-dag',
         name='test',
-        namespace='airflow',
+        namespace='fetch-system',
         image='alpine:latest',
         cmds=["sh", "-c"],
         arguments=["echo 'Hello World!' && exit 0"],

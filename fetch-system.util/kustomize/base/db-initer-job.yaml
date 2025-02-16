@@ -1,13 +1,13 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: "fetch-system-db-initer"
+  name: "db-initer"
   annotations:
     argocd.argoproj.io/sync-wave: "0"
 spec:
   template:
     metadata:
-      name: "fetch-system-db-initer"
+      name: "db-initer"
     spec:
       containers:
       - name: db-initer
