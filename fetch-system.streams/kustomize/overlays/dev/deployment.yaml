@@ -4,7 +4,7 @@ metadata:
   name: streams
   namespace: fetch-system
   annotations:
-    avp.kubernetes.io/path: "kv-v2/data/application/fetch-system/streams"
+    avp.kubernetes.io/path: "kv/data/application/fetch-system/streams"
 spec:
   template:
     metadata:

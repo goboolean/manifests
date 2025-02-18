@@ -3,7 +3,7 @@ kind: Job
 metadata:
   name: "db-initer"
   annotations:
-    avp.kubernetes.io/path: "kv-v2/data/application/fetch-system/util/db-initer"
+    avp.kubernetes.io/path: "kv/data/application/fetch-system/util/db-initer"
 spec:
   template:
     metadata:
