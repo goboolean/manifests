@@ -3,5 +3,5 @@ resources:
 - service-account.yaml
 - init-script.yaml
 
-patches:
+patchesStrategicMerge:
   - path: deployment.yaml
