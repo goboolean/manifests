@@ -21,9 +21,9 @@ spec:
             - name: KIS_SECRET_KEY
               value: <KIS_SECRET_KEY>
             - name: PLATFORM
-              value: <PLATFORM>
+              value: KIS
             - name: MARKET
-              value: <MARKET>
+              value: STOCK
             - name: ETCD_HOST
               value: <ETCD_HOST>
             - name: KAFKA_BOOTSTRAP_HOST
