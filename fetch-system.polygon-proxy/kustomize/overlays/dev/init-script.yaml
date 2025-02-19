@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: fetch-system-polygon-proxy-init-script
+  name: polygon-proxy-init-script
   namespace: fetch-system
 data:
   init.sh: |
