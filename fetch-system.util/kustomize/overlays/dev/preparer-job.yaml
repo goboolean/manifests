@@ -3,7 +3,7 @@ kind: Job
 metadata:
   name: "preparer"
   annotations:
-    avp.kubernetes.io/path: "kv/data/application/fetch-system/util/preparer"
+    avp.kubernetes.io/path: "kv/data/application/fetch-system/preparer"
 spec:
   template:
     metadata:
