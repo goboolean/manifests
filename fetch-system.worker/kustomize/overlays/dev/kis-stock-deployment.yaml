@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: kis-stock
   annotations:
-    avp.kubernetes.io/path: "kv/data/application/fetch-system/worker/kis-stock"
+    avp.kubernetes.io/path: "kv/data/application/fetch-system/kis-stock"
 spec:
   replicas: 0
   template:
