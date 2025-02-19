@@ -19,9 +19,9 @@ spec:
             - name: POLYGON_SECRET_KEY
               value: <POLYGON_SECRET_KEY>
             - name: PLATFORM
-              value: <PLATFORM>
+              value: POLYGON
             - name: MARKET
-              value: <MARKET>
+              value: STOCK
             - name: ETCD_HOST
               value: <ETCD_HOST>
             - name: KAFKA_BOOTSTRAP_HOST
