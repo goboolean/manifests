@@ -1,5 +1,7 @@
+namespace: fetch-system
+
 resources:
-- ../../base
+  - ../../base
 
 patches:
   - path: deployment.yaml

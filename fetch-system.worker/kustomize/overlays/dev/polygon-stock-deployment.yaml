@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: polygon-stock
+  namespace: fetch-system
   annotations:
     avp.kubernetes.io/path: "kv/data/application/fetch-system/polygon-stock"
 spec:
