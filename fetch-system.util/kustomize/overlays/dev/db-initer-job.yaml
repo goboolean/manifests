@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
         - name: db-initer
-          image: "registry.goboolean.io/fetch-system/util/db-initer:d54a7d0"
+          image: "registry.goboolean.io/fetch-system/util/db-initer:c585401"
           env:
             - name: POSTGRES_HOST
               value: <POSTGRES_HOST>
