@@ -12,7 +12,7 @@ spec:
       containers:
       - name: db-initer
         image: "registry.goboolean.io/fetch-system/util/db-initer:prod-latest"
-        imagePullPolicy: Always
+        imagePullPolicy: IfNotPresent
         env:
         - name: POSTGRES_HOST
           value: ""

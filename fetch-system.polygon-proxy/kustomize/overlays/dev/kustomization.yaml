@@ -1,9 +1,9 @@
 namespace: fetch-system
 
 resources:
-- ../../base
-- service-account.yaml
-- init-script.yaml
+  - ../../base
+  - service-account.yaml
+  - init-script.yaml
 
 patchesStrategicMerge:
   - path: deployment.yaml

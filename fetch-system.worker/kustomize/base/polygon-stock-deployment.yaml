@@ -16,7 +16,7 @@ spec:
       containers:
         - name: polygon-stock
           image: "registry.goboolean.io/fetch-system/worker:prod-latest"
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
           env:
             - name: POLYGON_SECRET_KEY
               value: ""
