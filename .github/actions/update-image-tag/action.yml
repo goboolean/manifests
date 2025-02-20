@@ -54,6 +54,6 @@ runs:
     - name: "Merge pull request"
       if: steps.pull-request.outputs.pull-request-operation == 'created'
       shell: bash
-      run: gh pr merge ${{ steps.pull-request.outputs.pull-request-number }} --squash --delete-branch --force --repo goboolean/manifests
+      run: gh pr merge ${{ steps.pull-request.outputs.pull-request-number }} --squash --delete-branch --admin --repo goboolean/manifests
       env:
         GITHUB_TOKEN: ${{ inputs.github-token }}
