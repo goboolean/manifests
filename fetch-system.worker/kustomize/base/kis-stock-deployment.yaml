@@ -16,7 +16,7 @@ spec:
       containers:
         - name: kis-stock
           image: "registry.goboolean.io/fetch-system/worker:prod-latest"
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
           env:
             - name: KIS_APP_KEY
               value: ""
