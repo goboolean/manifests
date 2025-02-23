@@ -22,9 +22,20 @@ spec:
             - name: init-script-volume
               mountPath: /scripts
           ports:
+            - containerPort: 9000
+        - name: nginx
+          image: nginx:alpine
+          volumeMounts:
+            - name: nginx-conf-volume
+              mountPath: /etc/nginx/nginx.conf
+          ports:
             - containerPort: 8080
       volumes:
         - name: init-script-volume
           configMap:
             name: polygon-proxy-init-script
-            defaultMode: 0777
+            defaultMode: 0744
+        - name: nginx-conf-volume
+          configMap:
+            name: polygon-proxy-nginx-conf
+            defaultMode: 0644
