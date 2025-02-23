@@ -28,6 +28,7 @@ spec:
           volumeMounts:
             - name: nginx-conf-volume
               mountPath: /etc/nginx/nginx.conf
+              subPath: nginx.conf
           ports:
             - containerPort: 8080
       volumes:
