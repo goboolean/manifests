@@ -17,7 +17,7 @@ data:
                 proxy_set_header Upgrade $http_upgrade;
                 proxy_set_header Connection "upgrade";
                 proxy_set_header Host $host;
-                limit_rate 128;
+                limit_rate 256;
                 limit_rate_after 0;
             }
         }
