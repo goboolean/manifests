@@ -17,7 +17,7 @@ spec:
           command: ["/bin/sh", "-c"]
           args:
             - |
-              chmod +x /scripts/init.sh && /scripts/init.sh
+              /scripts/init.sh
           volumeMounts:
             - name: init-script-volume
               mountPath: /scripts
@@ -27,4 +27,4 @@ spec:
         - name: init-script-volume
           configMap:
             name: polygon-proxy-init-script
-            defaultMode: 0744
+            defaultMode: 0777
