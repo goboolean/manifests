@@ -11,7 +11,7 @@ data:
     stream {
         server {
             listen 8080;
-            proxy_pass http://localhost:9000;
+            proxy_pass 127.0.0.1:9000;
             limit_rate 256;
         }
     }
