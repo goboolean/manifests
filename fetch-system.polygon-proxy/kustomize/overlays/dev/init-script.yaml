@@ -18,4 +18,6 @@ data:
     gsutil ls gs://goboolean-450909-load-test
     gsutil cp gs://goboolean-450909-load-test/output.txt /data/output.txt
 
-    websocketd --port=8080 --static cat /data/output.txt
+    socketd -l sd:ws://0.0.0.0:8080 -e "cat /data/output.txt"
+
+    tail -f /dev/null
