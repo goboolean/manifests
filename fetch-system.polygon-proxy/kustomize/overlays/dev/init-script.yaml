@@ -17,4 +17,4 @@ data:
     curl -Ls https://github.com/vi/websocat/releases/latest/download/websocat.x86_64-unknown-linux-musl -o /usr/local/bin/websocat
     chmod +x /usr/local/bin/websocat
 
-    cat /data/output.txt | websocat -s ws://0.0.0.0:9000
+    cat /data/output.txt | websocat -s 9000
