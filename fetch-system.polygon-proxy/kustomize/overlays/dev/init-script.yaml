@@ -11,13 +11,10 @@ data:
 
     apk add --no-cache curl
 
-    SOCKETD_VERSION="0.5.3"  # Check latest version at https://github.com/panjf2000/socketd/releases
-    curl -Lo /usr/local/bin/socketd https://github.com/panjf2000/socketd/releases/download/v${SOCKETD_VERSION}/socketd-x86_64-linux-musl
-    chmod +x /usr/local/bin/socketd
-
     gsutil ls gs://goboolean-450909-load-test
     gsutil cp gs://goboolean-450909-load-test/output.txt /data/output.txt
 
-    socketd -l sd:ws://0.0.0.0:8080 -e "cat /data/output.txt"
+    curl -Ls https://github.com/vi/websocat/releases/latest/download/websocat.x86_64-unknown-linux-musl -o /usr/local/bin/websocat
+    chmod +x /usr/local/bin/websocat
 
-    tail -f /dev/null
+    cat /data/output.txt | websocat -s 8080
