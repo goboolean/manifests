@@ -5,6 +5,9 @@ metadata:
   namespace: fetch-system
 data:
   nginx.conf: |
+    events {
+        worker_connections 1024;
+    }
     http {
         server {
             listen 8080;
