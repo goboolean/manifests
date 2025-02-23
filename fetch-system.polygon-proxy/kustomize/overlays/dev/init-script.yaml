@@ -14,4 +14,4 @@ data:
     gcloud config set core/project goboolean-450909
     gsutil cp gs://goboolean-450909-load-test/output.txt /data/output.txt
 
-    cat /data/output.txt | websocat -s 9000
+    RUST_LOG=error cat /data/output.txt | websocat -s 9000
