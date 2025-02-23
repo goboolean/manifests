@@ -7,9 +7,7 @@ data:
   init.sh: |
     #!/bin/sh
 
-    gcloud auth activate-service-account load-tester-sa@goboolean-450909.iam.gserviceaccount.com \
-      --key-file=/data/key.json
-    gcloud auth list
+    gcloud config set account load-tester-sa@goboolean-450909.iam.gserviceaccount.com
     gcloud config set project goboolean-450909
 
     apk add --no-cache curl
