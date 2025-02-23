@@ -18,4 +18,3 @@ data:
     chmod +x /usr/local/bin/websocat
 
     cat /data/output.txt | websocat -E -b 0.0.0.0:8080 reuse-raw:stdio:
-k
