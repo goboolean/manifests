@@ -6,4 +6,4 @@ resources:
   - init-script.yaml
 
 patchesStrategicMerge:
-  - path: deployment.yaml
+  - deployment.yaml
