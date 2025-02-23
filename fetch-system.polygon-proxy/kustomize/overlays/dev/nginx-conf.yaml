@@ -12,6 +12,6 @@ data:
         server {
             listen 8080;
             proxy_pass 127.0.0.1:9000;
-            limit_rate 256;
+            proxy_upload_rate 256;
         }
     }
