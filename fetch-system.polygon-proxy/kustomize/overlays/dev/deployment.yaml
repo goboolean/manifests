@@ -23,15 +23,15 @@ spec:
               mountPath: /scripts
           ports:
             - containerPort: 9000
-          readinessProbe:
-            exec:
-              command:
-                - sh
-                - -c
-                - "nc -z localhost 9000 || exit 1"
-            initialDelaySeconds: 5
-            periodSeconds: 10
-            failureThreshold: 10
+          #readinessProbe:
+          #  exec:
+          #    command:
+          #      - sh
+          #      - -c
+          #      - "nc -z localhost 9000 || exit 1"
+          #  initialDelaySeconds: 5
+          #  periodSeconds: 10
+          #  failureThreshold: 10
         - name: nginx
           image: nginx:alpine
           volumeMounts:
