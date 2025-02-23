@@ -145,14 +145,15 @@ config:
             healthy: 1
             problem: 2
             critical: 3
+    - override:
+        name_override: "{{ .Tag \"topic\" }}"
+
   outputs:
     - influxdb_v2:
         urls: ["http://influxdb2.influxdata.svc.cluster.local:80"]
-        token: ${influxdb_token}
+        token: ref+vault://kv/data/application/fetch-system/telegraf/influxdb_token
         organization: "goboolean"
-        bucket: "default"
-        bucket_tag: "topic"
-        exclude_bucket_tag: true
+        bucket: "stock-data"
 
   inputs:
     - kafka_consumer:
