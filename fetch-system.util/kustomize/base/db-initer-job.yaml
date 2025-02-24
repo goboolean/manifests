@@ -4,6 +4,11 @@ metadata:
   name: "db-initer"
   annotations:
     argocd.argoproj.io/sync-wave: "0"
+    sidecar.istio.io/inject: "true"
+    sidecar.istio.io/rewriteAppHTTPProbers: "true"
+    proxy.istio.io/config: |
+      terminationDrainDuration: 0
+
 spec:
   template:
     metadata:
