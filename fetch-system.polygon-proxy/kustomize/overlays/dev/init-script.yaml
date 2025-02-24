@@ -7,14 +7,11 @@ data:
   init.sh: |
     #!/bin/sh
 
-    gcloud config set core/project goboolean-450909
-
     apk add --no-cache curl
-
-    gsutil ls gs://goboolean-450909-load-test
-    gsutil cp gs://goboolean-450909-load-test/output.txt /data/output.txt
-
     curl -Ls https://github.com/vi/websocat/releases/latest/download/websocat.x86_64-unknown-linux-musl -o /usr/local/bin/websocat
     chmod +x /usr/local/bin/websocat
 
-    cat /data/output.txt | websocat -E -b ws-l:0.0.0.0:8080 reuse-raw:stdio:
+    gcloud config set core/project goboolean-450909
+    gsutil cp gs://goboolean-450909-load-test/output.txt /data/output.txt
+
+    RUST_LOG=error cat /data/output.txt | websocat -s 9000

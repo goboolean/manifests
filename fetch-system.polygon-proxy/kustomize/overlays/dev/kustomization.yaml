@@ -4,6 +4,6 @@ resources:
   - ../../base
   - service-account.yaml
   - init-script.yaml
-
+  - nginx-conf.yaml
 patchesStrategicMerge:
   - deployment.yaml
