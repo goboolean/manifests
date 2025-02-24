@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: kis-stock
-          image: "registry.goboolean.io/fetch-system/worker:e0a9a47"
+          image: "registry.goboolean.io/fetch-system/worker:f591356"
           env:
             - name: KIS_APP_KEY
               value: <KIS_APP_KEY>
